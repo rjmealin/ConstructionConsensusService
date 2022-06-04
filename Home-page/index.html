@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+    <div class="main-container">
+        <h1>Construction Consensus Service</h1>
+        <div class="name-lookup">
+            <input type="text" id="lookUp" name="lookUp" placeholder="Name to Lookup">
+            <button onclick="getContractInfo()">click me to do smart things</button>
+            <div id="dataContainer">
+
+            </div>
+        </div>
+        <div class="upDateContract">
+            <div>
+                <input type="text" id="name" name="name" placeholder="Name">
+                <input id="phoneNum" name="phoneNum" type="number" placeholder="Phone Number">
+                <button onclick="updateContractInfo()">Submit Info to Hedera</button>
+            </div>
+            <div>
+                <div id="alert"></div>
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="script.js">
+    </script>
+</body>
+</html>

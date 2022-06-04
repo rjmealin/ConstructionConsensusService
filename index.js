@@ -26,19 +26,21 @@ const { Http2ServerRequest } = require("http2");
 const { append } = require("express/lib/response");
 const App = express();
 let cors = require('cors');
+const { query } = require("express");
 const port = 5000;
 App.use(cors());
 App.use(express.json());
 App.use(express.urlencoded({ extended: true}));
+App.use(express.static("Home-page"));
 
 
-App.get('/', (req, res) => {
-    res.sendFile('index.html', {root: __dirname});
-})
+//App.get('/', (req, res) => {
+    //res.sendFile('index.html', {root: __dirname});
+//});
 
 App.listen(port, () => {
     console.log(`now listening on port ${port}`);
-})
+});
 
 
 
@@ -114,11 +116,12 @@ async function main() {
 //get information on the specific name requested
 
 App.get('/getContractInfo', async (req, res) => {
-
+    
+    console.log(req.query.arg1);
     const contractQueryTx1 = new ContractCallQuery()
         .setContractId('0.0.34937953')
         .setGas(100000)
-        .setFunction("getMobileNumber",new ContractFunctionParameters().addString(query.arg1))
+        .setFunction("getMobileNumber",new ContractFunctionParameters().addString(req.query.arg1))
         .setMaxQueryPayment(new Hbar(0.1)); 
     const contractQuerySubmit1 = await contractQueryTx1.execute(client);
     const contractQueryResult1 = contractQuerySubmit1.getUint256(0);

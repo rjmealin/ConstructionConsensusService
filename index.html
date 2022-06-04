@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Testing</h1>
+    <label for="lookUp">enter in the name you would like to look up</label>
+    <input type="text" id="lookUp" name="lookUp">
+    <button onclick="getContractInfo()">click me to do smart things</button>
+    <div class="upDateContract">
+        <label for="name">Enter Name you would like to loog</label>
+        <input type="text" id="name" name="name">
+        <label for="phoneNum">Enter phone number</label>
+        <input id="phoneNum" name="phoneNum" type="number">
+        <button onclick="updateContractInfo()">Click here to add information to the smart contract</button>
+    </div>
+    <div id="dataContainer">
+
+    </div>
+    <script>
+        function getContractInfo() {
+            let value = document.getElementById("lookUp");
+            request = JSON.stringify(value.value);
+            fetch(`http://127.0.0.1:5000/getContractInfo?arg1=${value.value}`, {method:'GET',mode:"cors"})
+                .then(function(response){
+                    console.log(response);
+                    let i = response.json();
+                    console.log(i);
+                    return i;
+                })
+                .then(function(response){
+                    let obj;
+                    if(response.number === 'N/A'){
+                        obj = "No information found on this user"
+                    }else {
+                        obj = JSON.parse(response.number);
+                    }
+
+                    let div = document.createElement("div");
+                    div.textContent = `${value.value}'s Phone Number is: ${obj}`
+                    let parent = document.getElementById('dataContainer');
+                    parent.appendChild(div);
+                });
+        }
+        
+        
+
+
+        function updateContractInfo() {
+            let nameNode = document.getElementById("name");
+            let name = nameNode.value;
+
+
+            let phoneNumNode = document.getElementById("phoneNum");
+            let phoneNum = phoneNumNode.value;
+
+            let data = {name:name, phoneNum:phoneNum}
+
+            let myInit = {
+                method: 'POST',
+                mode: 'cors',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+
+            }
+            console.log(myInit);
+            fetch('http://127.0.0.1:5000/PostContractInfo', myInit)
+                .then(function(response){
+                    console.log(response)
+                    let i = response.json()
+                    console.log(i)
+                })
+
+
+
+
+        }
+    </script>
+</body>
+</html>

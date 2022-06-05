@@ -9,12 +9,26 @@
 </head>
 <body>
     <div class="main-container">
-        <h1>Construction Consensus Service</h1>
+        <div class="header">
+            <div>
+                <a href="http://127.0.0.1:5000/blue-prints">BluePrint Service</a>
+            </div>
+            <div>
+                <a>Safety Certifications</a>
+            </div>
+            <h1>Construction Consensus Service</h1>
+            <div>
+                <a>Safety Documents</a>
+            </div>
+            <div>
+                <a>Scheduleing</a>
+            </div>
+        </div>
+        
         <div class="name-lookup">
             <input type="text" id="lookUp" name="lookUp" placeholder="Name to Lookup">
-            <button onclick="getContractInfo()">click me to do smart things</button>
+            <button onclick="getContractInfo()">Search</button>
             <div id="dataContainer">
-
             </div>
         </div>
         <div class="upDateContract">
@@ -26,8 +40,8 @@
             <div>
                 <div id="alert"></div>
             </div>
-            
         </div>
+        
     </div>
 
     <script src="script.js">

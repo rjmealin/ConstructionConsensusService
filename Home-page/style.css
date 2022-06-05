@@ -1,4 +1,5 @@
 *{box-sizing: border-box;}
+body{margin:0px;}
 h1 {color: #313409;}
 .main-container{
                 display: flex; 
@@ -8,7 +9,12 @@ h1 {color: #313409;}
                 background: #fdf060;
                 background: radial-gradient(circle, #fdf060 40%, #830edd 100%);
             }
-
+.header {
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    
+}
 .name-lookup{
     border:solid #313409 1px; 
     border-radius: 10px; 

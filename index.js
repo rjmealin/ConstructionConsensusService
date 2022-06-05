@@ -33,10 +33,15 @@ App.use(express.json());
 App.use(express.urlencoded({ extended: true}));
 App.use(express.static("Home-page"));
 
+//App.use(express.static("blue-prints"));
+//App.use(express.static(""));
+//App.use(express.static(""));
+//App.use(express.static(""));
 
-//App.get('/', (req, res) => {
-    //res.sendFile('index.html', {root: __dirname});
-//});
+
+App.get('/blue-prints', (req, res) => {
+    res.sendFile('./blue-prints/blue-prints.html', {root: __dirname});
+});
 
 App.listen(port, () => {
     console.log(`now listening on port ${port}`);
